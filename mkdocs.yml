@@ -1,0 +1,16 @@
+site_name: Notas Musicais
+repo_url: https://github.com/raf-rodrigo/notas-musicais-rafael-rodrigo.git
+repo_name: raf-rodrigo/notas-musicais-rafael-rodrigo
+edit_uri: tree/main/docs
+
+theme:
+  name: material
+  language: pt-BR
+  logo: assets/favicon.png
+  favicon: assets/favicon.png
+
+markdown_extensions:
+  - attr_list
+
+extra_css:
+  - stylesheets/extra.css

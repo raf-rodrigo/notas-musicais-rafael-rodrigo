@@ -3,7 +3,7 @@ AAA - 3A - A3
 Arange - Act - Asserts
 (Arrumar - Agir - Garantir)
 """
-from pytest import raises
+from pytest import mark, raises
 
 from notas_musicais_rafael_rodrigo.escalas import ESCALAS, NOTAS, escala
 
@@ -45,3 +45,25 @@ def test_deve_retornar_um_erro_dizendo_que_a_escala_nao_existe():
         escala(tonica, tonalidade)
 
     assert mensagem_de_erro == error.value.args[0]
+
+
+@mark.parametrize(
+    'tonica,esperado',
+    [
+        ('C', ['C', 'D', 'E', 'F', 'G', 'A', 'B']),
+        ('C#', ['C#', 'D#', 'F', 'F#', 'G#', 'A#', 'C']),
+        ('F', ['F', 'G', 'A', 'A#', 'C', 'D', 'E']),
+    ],
+)
+def test_deve_retornar_notas_corretas(tonica, esperado):
+    resultado = escala(tonica, 'maior')
+    assert resultado['notas'] == esperado
+
+
+def test_deve_retornar_os_sete_grau():
+    tonica = 'c'
+    tonalidade = 'maior'
+    esperado = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
+
+    resultado = escala(tonica, tonalidade)
+    assert resultado['graus'] == esperado
